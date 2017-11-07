@@ -33,17 +33,22 @@ getDimensions(width, height, channels, slices, frames);
 // Modify two last values (number of pixels) to modify box size
 makeRectangle(282, 267, 147, 147);
 for (i = 0; i < frames; i++) {
+	p = i + 1;
+	selectImage(MAXviboud2);
+	Stack.setPosition(1,1,p);
   	title = "Select the area you want to quantify and click OK";
   	waitForUser(title);
 	Roi.getBounds(x,y,width,height);
 	run("Duplicate...", "getTitle(viboud)");
 	selectImage(MAXviboud2);
-	run("Next Slice [>]");
+	//run("Next Slice [>]");
 	makeRectangle(x, y, 147, 147);
 }
 selectImage(viboud);
 close();
 selectImage(MAXviboud);
+close();
+selectImage(MAXviboud2);
 close();
 run("Images to Stack", "method=[Copy (center)] name=Stack title=[] use");
 DECONDviboud = getImageID();
@@ -85,6 +90,12 @@ selectImage(DECONDviboud);
 close();
 selectImage(AREAviboud);
 close();
+
+
+
+
+
+
 
 
 
