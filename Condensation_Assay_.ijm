@@ -30,14 +30,16 @@ MAXviboud2 = getImageID();
 // of pixels that will be thresholded (box size does affect thresholding)
 selectImage(MAXviboud2);
 getDimensions(width, height, channels, slices, frames);
+// Modify two last values (number of pixels) to modify box size
+makeRectangle(282, 267, 147, 147);
 for (i = 0; i < frames; i++) {
-	// Modify two last values (number of pixels) to modify box size
-	makeRectangle(282, 267, 147, 147);
   	title = "Select the area you want to quantify and click OK";
   	waitForUser(title);
+	Roi.getBounds(x,y,width,height);
 	run("Duplicate...", "getTitle(viboud)");
 	selectImage(MAXviboud2);
 	run("Next Slice [>]");
+	makeRectangle(x, y, 147, 147);
 }
 selectImage(viboud);
 close();
